@@ -1,0 +1,37 @@
+object_type = random15to50
+test_object_type = random15to50
+
+# network
+brick_num = 201
+
+# dataset
+num_test = 1000
+num_train = 9000
+
+# augmentation
+root_aug_range = 15
+
+# train
+lr = 1e-3
+n_epochs = 2000
+iou_interval = 100
+test_interval = 100
+ckpt_interval = 200
+
+# fine_tune
+fine_tune = 0
+
+
+# test
+test_eval_acc = 0
+
+# inference
+# inference = 1
+# save_obj = 0
+# load_model_path = pretrained_model/random15to50.pt
+
+# tools
+use_wandb = 0
+
+# 1 for ModelNet3-C, and 0 for ModelNet40-C
+test_modelnet3 = 1

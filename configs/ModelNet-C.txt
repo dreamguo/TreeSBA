@@ -1,0 +1,30 @@
+object_type = modelnet_all
+test_object_type = modelnet_airplane
+
+# network
+brick_num = 201
+
+# train
+lr = 1e-4
+n_epochs = 2000
+iou_interval = 10
+test_interval = 50
+ckpt_interval = 50
+batch_size = 8
+test_eval_acc = 0
+
+# fine_tune
+fine_tune = 0
+load_model_path = pretrained_model/random13to18.pt
+reload = 0
+
+# inference
+inference = 0
+save_obj = 0
+
+# tools
+use_wandb = 0
+
+# 1 for ModelNet3-C, and 0 for ModelNet40-C
+train_modelnet3 = 1
+test_modelnet3 = 0

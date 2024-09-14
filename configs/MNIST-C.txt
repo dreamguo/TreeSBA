@@ -1,0 +1,29 @@
+object_type = mnist_all
+test_object_type = mnist_all
+
+# network
+brick_num = 19
+
+# dataset
+num_test = 2000
+num_train = 8000
+
+# augmentation
+root_aug_range = 1
+
+# train
+lr = 1e-4
+n_epochs = 200
+iou_interval = 1
+test_interval = 1
+ckpt_interval = 10
+
+# fine_tune
+fine_tune = 0
+load_model_path = pretrained_model/random13to18.pt
+
+# test
+test_eval_acc = 0
+
+# tools
+use_wandb = 0
