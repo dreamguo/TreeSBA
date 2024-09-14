@@ -34,19 +34,22 @@ Please follow the data folder as:
 ```
 ├── dataset
 |   ├── graph_dat
-|   |   └── random.dat  # downloaded RAD dataset
+|   |   └── random13to18.dat   # RAD-S dataset
+|   |   └── random15to50.dat   # RAD dataset
+|   |   └── random.dat         # RAD-1k dataset
 |   |   └── ...
 |   ├── tree_actions
-|   |   └── random      # downloaded RAD dataset
+|   |   └── random13to18       # RAD-S dataset
 |   |   └── ...
 |   ├── tree_dep_actions
-│   │   └── random      # downloaded RAD dataset
+│   │   └── random13to18       # RAD-S dataset
 |   |   └── ...
 |   ├── voxel
-│   │   └── mnist_all   # downloaded MNIST-C dataset
+│   │   └── mnist_all          # MNIST-C dataset
+│   │   └── modelnet_all       # ModelNet-C40 dataset
 |   |   └── ...
 │   ├── voxel_img
-│   │   └── random      # downloaded RAD dataset
+│   │   └── random13to18       # RAD-S dataset
 |   |   └── ...
 ├── ...
 ```
@@ -54,26 +57,46 @@ Please follow the data folder as:
 ### Training.
 Pre-train on RAD dataset.
 ```sh
-CUDA_VISIBLE_DEVICES=0 python train.py --config configs/RAD.txt
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/RAD.txt
+```
+
+Pre-train on RAD-S dataset.
+```sh
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/RAD-S.txt
+```
+
+Fine tune on MNIST-C dataset.
+```sh
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/MNIST-C.txt
 ```
 
 Fine tune on ModelNet-C3 dataset.
 ```sh
-CUDA_VISIBLE_DEVICES=0 python train.py --config configs/ModelNet-C.txt
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/ModelNet-C.txt
 ```
+
 
 We also upload pre-trained checkpoints [here](https://huggingface.co/datasets/dreamer001/TreeSBA_Dataset/blob/main/pretrained_model.zip), please put them under `./pretrained_model` folder.
 
 ### Test.
+Test on MNIST-C dataset.
+```sh
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/MNIST-C.txt --inference 1 --save_obj 1 --load_model_path pretrained_model/mnist_all.pt
+```
+
 Test on ModelNet-C3 dataset.
 ```sh
-CUDA_VISIBLE_DEVICES=0 python train.py --config configs/ModelNet-C.txt --inference 1 --save_obj 1 --load_model_path output/modelnet_table/model/model50.pt
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/ModelNet-C.txt --inference 1 --save_obj 1 --load_model_path pretrained_model/modelnet_all3.pt
+```
+
+Test on ModelNet-C40 dataset.
+```sh
+CUDA_VISIBLE_DEVICES=0 python run.py --config configs/ModelNet-C.txt --inference 1 --save_obj 1 --load_model_path pretrained_model/modelnet_all40.pt
 ```
 
 ## 3. Dataset build from scratch
 ```sh
-CUDA_VISIBLE_DEVICES=0 python prepare_dataset/prepareRAD.py
-CUDA_VISIBLE_DEVICES=0 python prepare_dataset/prepareModelNet.py
+python prepare_dataset/prepareRAD.py
 ```
 Our code for generting LEGO dataset is based on [Combinatorial-3D-Shape-Generation](https://github.com/POSTECH-CVLab/Combinatorial-3D-Shape-Generation).
 
